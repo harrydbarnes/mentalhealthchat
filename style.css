@@ -3,7 +3,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #F5F5FA;
     color: #333;
     display: flex;
     flex-direction: column;
@@ -26,8 +26,9 @@ main {
     padding: 20px;
     max-width: 800px;
     margin: 20px auto;
-    background-color: white;
+    background-color: white; /* Or rgba(255, 255, 255, 0.8) if we want main content area to also be slightly translucent */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    animation: fadeInSlideUp 0.7s ease-out forwards; /* Apply the animation */
 }
 
 footer {
@@ -39,30 +40,51 @@ footer {
 }
 
 /* Button Styles */
-button, a[href*="html"] { /* Target buttons and <a> tags that look like buttons */
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    margin: 5px;
-    border-radius: 5px;
+button, a[href*="html"] {
+    background: rgba(255, 255, 255, 0.1); /* Base for translucency */
+    color: #333; /* Darker text for light buttons */
+    border: 1px solid rgba(0, 0, 0, 0.1); /* Subtle border */
+    padding: 12px 25px; /* Slightly larger padding */
+    margin: 10px 5px; /* Adjust margin */
+    border-radius: 30px; /* Significantly rounded corners */
     cursor: pointer;
     font-size: 1em;
-    text-decoration: none; /* For <a> tags */
-    display: inline-block; /* For <a> tags */
+    font-weight: 500; /* Slightly bolder text */
+    text-decoration: none;
+    display: inline-block;
+    backdrop-filter: blur(10px) saturate(180%); /* Frosted glass effect */
+    -webkit-backdrop-filter: blur(10px) saturate(180%); /* For Safari */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), /* Softer, larger shadow */
+                inset 0 1px 2px rgba(255, 255, 255, 0.2); /* Inner highlight for glass effect */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
 }
 
 button:hover, a[href*="html"]:hover {
-    background-color: #0056b3;
+    background: rgba(255, 255, 255, 0.2); /* Slightly more opaque on hover */
+    color: #000; /* Darker text on hover */
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15), /* Enhanced shadow */
+                inset 0 1px 2px rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px); /* Slight lift */
 }
 
+/* Specific button styling - using a primary color accent */
+/* We'll make this one stand out a bit more, perhaps with a colored translucent background */
 #initiateChatBtn {
-    background-color: #28a745; /* Green for primary action */
+    background: rgba(0, 123, 255, 0.15); /* Translucent primary color */
+    color: #007bff; /* Primary color text */
+    border: 1px solid rgba(0, 123, 255, 0.2);
 }
 
 #initiateChatBtn:hover {
-    background-color: #1e7e34;
+    background: rgba(0, 123, 255, 0.25); /* Darker/more opaque primary on hover */
+    color: #0056b3; /* Darker primary text */
+    box-shadow: 0 6px 16px rgba(0, 123, 255, 0.2), /* Colored shadow */
+                inset 0 1px 2px rgba(255, 255, 255, 0.3);
 }
+
+/* Ensure other buttons (like in forms or dashboard) also adopt the base style */
+/* The generic 'button' selector above should cover them, but if there are specific IDs, they might need adjustment. */
+/* For now, this should provide a good base. */
 
 /* Form Styles */
 form div {
@@ -145,4 +167,15 @@ div > input[type="checkbox"] + label {
 
 div > input[type="checkbox"] {
     vertical-align: middle;
+}
+
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
